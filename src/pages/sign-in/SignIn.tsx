@@ -16,7 +16,7 @@ export const SignIn = () => {
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
-    // isAuthenticated && navigate("/meeting");
+    isAuthenticated && navigate("/meeting");
   }, [isAuthenticated]);
 
   if (isLoading) {

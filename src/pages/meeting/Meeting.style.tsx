@@ -7,7 +7,11 @@ export const StyledContainer = styled("div", {
   padding: "0 $container",
   gap: "$container",
 
-  "@mobile": {
+  "@desktop": {
+    gridTemplateColumns: "1fr 1fr",
+  },
+
+  "@tablet": {
     gridTemplateColumns: "1fr",
     textAlign: "center",
   },
@@ -16,7 +20,7 @@ export const StyledContainer = styled("div", {
 export const StyledCover = styled(Flex, {
   filter: "grayScale(50%)",
 
-  "@mobile": {
+  "@tablet": {
     display: "none",
   },
 });

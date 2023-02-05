@@ -9,6 +9,7 @@ export const Illustration: React.FC<React.SVGProps<SVGSVGElement>> = props => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      {...props}
     >
       <rect width="576" height="456" fill="url(#pattern0)" />
       <rect x="242" y="212" width="53" height="39" fill="#FAFAFA" />

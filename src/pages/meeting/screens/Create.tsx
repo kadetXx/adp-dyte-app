@@ -67,7 +67,7 @@ export const Create: React.FC = () => {
         </Flex>
 
         <StyledCover justify="center" align="center">
-          <Illustration />
+          <Illustration width="100%" />
         </StyledCover>
       </StyledContainer>
     </>
