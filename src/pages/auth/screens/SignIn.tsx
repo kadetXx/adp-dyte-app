@@ -13,16 +13,7 @@ import {
 
 export const SignIn = () => {
   const navigate = useNavigate();
-  const [search] = useSearchParams();
-
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-
-  useEffect(() => {
-    const key = import.meta.env.VITE_AUTH_CALLBACK_STORAGE_KEY;
-    const callbackUrl = search.get("callbackUrl");
-
-    callbackUrl && sessionStorage.setItem(key, callbackUrl);
-  }, []);
 
   useEffect(() => {
     isAuthenticated && navigate("/meeting");

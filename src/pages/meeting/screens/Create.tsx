@@ -30,8 +30,10 @@ export const Create: React.FC = () => {
       <StyledContainer>
         <Flex stretchx direction="column" justify="center" gap="2rem">
           <Flex direction="column" gap="0.7rem">
-            <Text variant="h1">Create new meeting</Text>
-            <Text size="$lg">
+            <Text variant="h1" align="center">
+              Create new meeting
+            </Text>
+            <Text size="$lg" align="center">
               Give your meeting a title. Good meeting names help set
               expectations and inform attendees
             </Text>
