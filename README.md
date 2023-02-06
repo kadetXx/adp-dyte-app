@@ -1,6 +1,6 @@
 # @adp dyte-app
 
-Shared UI Components
+Dyte meeting and SSO authentication app
 
 ## Getting Started
 
