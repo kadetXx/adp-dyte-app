@@ -1,4 +1,4 @@
-# @adp Shared-UI
+# @adp dyte-app
 
 Shared UI Components
 
