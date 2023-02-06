@@ -7,7 +7,7 @@ import { useMeeting } from "../hooks/useMeeting";
 
 export const Create: React.FC = () => {
   const { user, logout } = useAuth0();
-  const { loading, meetingTitle, setMeetingTitle, createMeeting } =
+  const { loading, error, meetingTitle, setMeetingTitle, createMeeting } =
     useMeeting();
 
   return (
@@ -49,7 +49,7 @@ export const Create: React.FC = () => {
             <Input
               placeholder="Meeting Title"
               value={meetingTitle}
-              disabled={loading}
+              disabled={loading || error}
               onChange={e => setMeetingTitle(e.target.value)}
             />
             <Button
@@ -57,11 +57,19 @@ export const Create: React.FC = () => {
               size="large"
               fullWidth
               loading={loading}
-              disabled={meetingTitle.length < 3}
+              disabled={meetingTitle.length < 3 || error}
             >
               Create Meeting
             </Button>
           </Flex>
+
+          {error && (
+            <Flex align="center" justify="center">
+              <Text color="$danger" weight="bold">
+                Opps! Something went wrong, please reload and try again
+              </Text>
+            </Flex>
+          )}
         </Flex>
 
         <StyledCover justify="center" align="center">

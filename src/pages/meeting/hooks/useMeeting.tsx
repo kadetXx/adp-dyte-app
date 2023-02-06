@@ -13,6 +13,7 @@ import axios from "axios";
 export const useMeeting = () => {
   const api = import.meta.env.VITE_ADP_SERVER_URL;
 
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [meetingTitle, setMeetingTitle] = useState<string>("");
 
@@ -40,10 +41,12 @@ export const useMeeting = () => {
       joinMeeting(id, title, true, (meetingId, meetingTitle) =>
         navigate(`/meeting/${meetingTitle}/${meetingId}`)
       );
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.error(error);
+      setLoading(false);
+      setError(true);
     }
-  }, [meetingTitle]);
+  }, [meetingTitle, getAccessTokenSilently]);
 
   const joinMeeting = useCallback(
     async (
@@ -77,15 +80,17 @@ export const useMeeting = () => {
         sessionStorage.setItem(STORAGE_KEYS.MEETING_ROLE, userRole);
 
         onJoined?.(meetingId, meetingTitle);
-      } catch (error) {
+      } catch (error: any) {
+        console.error(error);
         setLoading(false);
-        console.warn(error);
+        setError(true);
       }
     },
     [meetingTitle, getAccessTokenSilently]
   );
 
   return {
+    error,
     loading,
     meetingTitle,
     setMeetingTitle,
