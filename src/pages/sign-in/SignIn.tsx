@@ -1,5 +1,5 @@
-import React, { useLayoutEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Flex, Text, Button, Loader } from "@adp/common";
 import { LockIcon } from "../../components/LockIcon";
@@ -12,10 +12,18 @@ import {
 } from "./SignIn.styles";
 
 export const SignIn = () => {
+  const [search] = useSearchParams();
+
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
+  const key = import.meta.env.VITE_AUTH_CALLBACK_STORAGE_KEY;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    const callbackUrl = search.get("callbackUrl");
+    callbackUrl && sessionStorage.setItem(key, callbackUrl);
+  }, []);
+
+  useEffect(() => {
     isAuthenticated && navigate("/meeting");
   }, [isAuthenticated]);
 
@@ -48,7 +56,13 @@ export const SignIn = () => {
           </Flex>
 
           <Flex stretchx direction="column" align="center" gap="0.7rem">
-            <Button fullWidth size="large" onClick={() => loginWithRedirect()}>
+            <Button
+              fullWidth
+              size="large"
+              onClick={() => {
+                loginWithRedirect();
+              }}
+            >
               Sign In
             </Button>
 
