@@ -7,7 +7,7 @@ export const Meeting = () => {
   return (
     <Routes>
       <Route path="/" element={<Create />} />
-      <Route path="/:room/:id" element={<Call />} />
+      <Route path="/:title/:id" element={<Call />} />
     </Routes>
   );
 };

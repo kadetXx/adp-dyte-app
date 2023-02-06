@@ -1,18 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { StyledContainer, StyledCover } from "../Meeting.style";
 import { Input, Button, Flex, Text, Header } from "@adp/common";
 import { Illustration } from "../../../components/Illustration";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useMeeting } from "../hooks/useMeeting";
 
 export const Create: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [meetingTitle, setMeetingTitle] = useState<string>("");
-
   const { user, logout } = useAuth0();
-
-  const createRoom = useCallback(async () => {
-    setLoading(true);
-  }, []);
+  const { loading, meetingTitle, setMeetingTitle, createMeeting } =
+    useMeeting();
 
   return (
     <>
@@ -47,7 +43,7 @@ export const Create: React.FC = () => {
             gap="1rem"
             onSubmit={e => {
               e.preventDefault();
-              createRoom();
+              createMeeting();
             }}
           >
             <Input
