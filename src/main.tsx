@@ -9,17 +9,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <Auth0Provider
       domain={import.meta.env.VITE_AUTH0_ISSUER_BASEURL}
       clientId={import.meta.env.VITE_AUTH0_CLIENTID}
-      onRedirectCallback={() => {
-        const key = import.meta.env.VITE_AUTH_CALLBACK_STORAGE_KEY;
-        const url = sessionStorage.getItem(key);
-
-        if (url) {
-          sessionStorage.removeItem(key)
-          window.location.href = url;
-        }
-      }}
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: window.location.origin + "/auth",
         audience: import.meta.env.VITE_AUTH0_IDENTIFIER,
       }}
     >

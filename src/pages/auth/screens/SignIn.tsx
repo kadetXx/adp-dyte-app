@@ -2,24 +2,25 @@ import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Flex, Text, Button, Loader } from "@adp/common";
-import { LockIcon } from "../../components/LockIcon";
+import { LockIcon } from "../../../components/LockIcon";
 import {
   StyledContainer,
   StyledContent,
   StyledIcon,
   StyledLink,
   StyledWrapper,
-} from "./SignIn.styles";
+} from "../Auth.styles";
 
 export const SignIn = () => {
+  const navigate = useNavigate();
   const [search] = useSearchParams();
 
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-  const navigate = useNavigate();
-  const key = import.meta.env.VITE_AUTH_CALLBACK_STORAGE_KEY;
 
   useEffect(() => {
+    const key = import.meta.env.VITE_AUTH_CALLBACK_STORAGE_KEY;
     const callbackUrl = search.get("callbackUrl");
+
     callbackUrl && sessionStorage.setItem(key, callbackUrl);
   }, []);
 
