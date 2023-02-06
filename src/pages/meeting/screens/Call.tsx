@@ -20,16 +20,29 @@ export const Call = () => {
     const invalidParams = !params.id || !params.title;
     const hasExistingSession = meetingAuth && meetingRole;
 
-    if (hasExistingSession) {
-      initMeeting({
-        authToken: meetingAuth,
+    const init = async (token: string) => {
+      const client = await initMeeting({
+        authToken: token,
         roomName: "",
       });
-    } else if (!invalidParams) {
-      joinMeeting(params.id, params.title, meetingRole === ROLE.HOST, () => {
+
+      client.self.once("roomLeft", () => {
+        sessionStorage.clear();
+        navigate("/meeting");
+      });
+    };
+
+    const join = (id: string, title: string) => {
+      joinMeeting(id, title, meetingRole === ROLE.HOST, () => {
         window.location.reload();
       });
-    }
+    };
+
+    hasExistingSession
+      ? init(meetingAuth)
+      : !invalidParams
+      ? join(params.id, params.title)
+      : null;
   }, []);
 
   return <DyteMeeting meeting={meeting!} />;
