@@ -47,7 +47,7 @@ export const Create: React.FC = () => {
             }}
           >
             <Input
-              placeholder="Meeting Title"
+              placeholder="Mentorship Session"
               value={meetingTitle}
               disabled={loading || error}
               onChange={e => setMeetingTitle(e.target.value)}

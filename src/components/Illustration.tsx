@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Illustration: React.FC<React.SVGProps<SVGSVGElement>> = ({
-  fill = "#0B243F",
+  fill = "#000000",
   ...props
 }) => {
   return (
