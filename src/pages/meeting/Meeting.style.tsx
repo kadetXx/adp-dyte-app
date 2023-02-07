@@ -19,6 +19,7 @@ export const StyledContainer = styled("div", {
 
 export const StyledCover = styled(Flex, {
   filter: "grayScale(50%)",
+  padding: '0 0 0 15%',
 
   "@tablet": {
     display: "none",
