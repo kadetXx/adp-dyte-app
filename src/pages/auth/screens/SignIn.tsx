@@ -24,8 +24,8 @@ export const SignIn = () => {
   }
 
   return (
-    <StyledContainer>
-      <StyledWrapper>
+    <StyledWrapper>
+      <StyledContainer>
         <StyledContent
           stretchy
           gap="1.5rem"
@@ -70,7 +70,7 @@ export const SignIn = () => {
             </Text>
           </Flex>
         </StyledContent>
-      </StyledWrapper>
-    </StyledContainer>
+      </StyledContainer>
+    </StyledWrapper>
   );
 };

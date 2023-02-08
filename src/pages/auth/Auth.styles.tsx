@@ -1,6 +1,6 @@
 import { Flex, styled } from "@adp/common";
 
-export const StyledContainer = styled("div", {
+export const StyledWrapper = styled("div", {
   height: "100vh",
   width: "100%",
   backgroundSize: "2.5rem 2.5rem",
@@ -8,7 +8,7 @@ export const StyledContainer = styled("div", {
   backgroundImage: `linear-gradient(90deg,#ddd .063rem,#0000 0),linear-gradient(180deg,#ddd .063rem,#0000 0)`,
 });
 
-export const StyledWrapper = styled("div", {
+export const StyledContainer = styled("div", {
   width: "100%",
   height: "100%",
   display: "grid",

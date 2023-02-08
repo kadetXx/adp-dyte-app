@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyledContainer, StyledCover } from "../Meeting.style";
+import { StyledContainer, StyledCover, StyledWrapper } from "../Meeting.style";
 import { Input, Button, Flex, Text, Header } from "@adp/common";
 import { Illustration } from "../../../components/Illustration";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -19,7 +19,7 @@ export const Create: React.FC<MeetingPageProps> = ({ socket }) => {
   } = useMeeting();
 
   return (
-    <>
+    <StyledWrapper>
       {user && (
         <Header
           profile={{
@@ -96,6 +96,6 @@ export const Create: React.FC<MeetingPageProps> = ({ socket }) => {
           <Illustration width="100%" />
         </StyledCover>
       </StyledContainer>
-    </>
+    </StyledWrapper>
   );
 };
