@@ -1,3 +1,9 @@
+import { Socket } from "socket.io-client";
+
+export interface MeetingPageProps {
+  socket: Socket;
+}
+
 export enum ROLE {
   HOST = "group_call_host",
   PARTICIPANT = "group_call_participant",
