@@ -42,7 +42,7 @@ export const Create: React.FC<MeetingPageProps> = ({ socket }) => {
             </Text>
             <Text size="$lg" align="center">
               Give your meeting a title. Good meeting names help set
-              expectations and inform attendees
+              expectations and inform attendees.
             </Text>
           </Flex>
 
