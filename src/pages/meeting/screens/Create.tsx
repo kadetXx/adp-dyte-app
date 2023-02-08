@@ -8,8 +8,15 @@ import { MeetingPageProps } from "../types";
 
 export const Create: React.FC<MeetingPageProps> = ({ socket }) => {
   const { user, logout } = useAuth0();
-  const { loading, error, meetingTitle, setMeetingTitle, createMeeting } =
-    useMeeting();
+  const {
+    loading,
+    error,
+    meetingTitle,
+    setMeetingTitle,
+    setInvalidTitle,
+    invalidTitle,
+    createMeeting,
+  } = useMeeting();
 
   return (
     <>
@@ -52,16 +59,25 @@ export const Create: React.FC<MeetingPageProps> = ({ socket }) => {
           >
             <Input
               placeholder="Mentorship Session"
+              error={invalidTitle && "Please give your meeting a title"}
               value={meetingTitle}
               disabled={loading || error}
-              onChange={e => setMeetingTitle(e.target.value)}
+              isDisabled={loading || error}
+              onChange={e => {
+                const value = e.target.value;
+                setMeetingTitle(value);
+
+                if (invalidTitle) {
+                  value.length > 3 && setInvalidTitle(false);
+                }
+              }}
             />
             <Button
               type="submit"
               size="large"
               fullWidth
               loading={loading}
-              disabled={meetingTitle.length < 3 || error}
+              disabled={invalidTitle}
             >
               Create Meeting
             </Button>

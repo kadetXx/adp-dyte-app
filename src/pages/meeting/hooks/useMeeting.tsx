@@ -13,14 +13,21 @@ import axios from "axios";
 export const useMeeting = () => {
   const api = import.meta.env.VITE_ADP_SERVER_URL;
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
   const [meetingTitle, setMeetingTitle] = useState<string>("");
+  const [invalidTitle, setInvalidTitle] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const { user, getAccessTokenSilently } = useAuth0();
 
   const createMeeting = useCallback(async () => {
+    if (meetingTitle.length < 3) {
+      setInvalidTitle(true);
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -92,9 +99,11 @@ export const useMeeting = () => {
   return {
     error,
     loading,
-    meetingTitle,
-    setMeetingTitle,
     joinMeeting,
     createMeeting,
+    meetingTitle,
+    setMeetingTitle,
+    invalidTitle,
+    setInvalidTitle,
   };
 };
