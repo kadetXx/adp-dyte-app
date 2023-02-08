@@ -4,11 +4,6 @@ export interface MeetingPageProps {
   socket: Socket;
 }
 
-export enum ROLE {
-  HOST = "group_call_host",
-  PARTICIPANT = "group_call_participant",
-}
-
 export interface CreateMeetingResponse {
   data: {
     id: string;
@@ -27,6 +22,11 @@ export type CallParams = {
   id: string;
   title: string;
 };
+
+export enum ROLE {
+  HOST = "group_call_host",
+  PARTICIPANT = "group_call_participant",
+}
 
 export enum STORAGE_KEYS {
   MEETING_ID = "MEETING_ID",
