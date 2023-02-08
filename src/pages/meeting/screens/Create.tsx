@@ -4,8 +4,9 @@ import { Input, Button, Flex, Text, Header } from "@adp/common";
 import { Illustration } from "../../../components/Illustration";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMeeting } from "../hooks/useMeeting";
+import { MeetingPageProps } from "../types";
 
-export const Create: React.FC = () => {
+export const Create: React.FC<MeetingPageProps> = ({ socket }) => {
   const { user, logout } = useAuth0();
   const { loading, error, meetingTitle, setMeetingTitle, createMeeting } =
     useMeeting();
@@ -17,8 +18,11 @@ export const Create: React.FC = () => {
           profile={{
             username: user.name,
             avatarUrl: user.picture,
-            onLogout: logout,
             profileUrl: import.meta.env.VITE_PROFILE_APP_URL,
+            onLogout: () => {
+              socket.emit("logout", user.email);
+              logout();
+            },
           }}
         />
       )}
