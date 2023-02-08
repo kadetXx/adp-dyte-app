@@ -21,7 +21,7 @@ function App() {
 
     /**
      * websocket events to emit login to server
-     * and to listen for logout from meeting app
+     * and to listen for logout from profile app
      */
     socket.emit("login", user.email);
     socket.on("logout", logout);
