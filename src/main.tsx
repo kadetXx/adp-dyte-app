@@ -7,6 +7,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Auth0Provider
+      useRefreshTokens
+      cacheLocation="localstorage"
       domain={import.meta.env.VITE_AUTH0_ISSUER_BASEURL}
       clientId={import.meta.env.VITE_AUTH0_CLIENTID}
       authorizationParams={{
